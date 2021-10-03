@@ -10,6 +10,8 @@ COPY . .
 RUN npm run build
 
 FROM nginx as runner
+# Open up port 80
+EXPOSE 80
 
 # The destination dir is from the nginx docker hub documentation
 COPY --from=build /app/build /usr/share/nginx/html
