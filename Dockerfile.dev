@@ -1,0 +1,13 @@
+# Before building an image, build the react app in the directory first with 'npx create-react-app frontend'
+# This app makes use of a bind mount or volume at /app
+FROM node:alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+
+RUN npm install
+
+COPY --chown=node:node . .
+
+CMD [ "npm", "run", "start"]
